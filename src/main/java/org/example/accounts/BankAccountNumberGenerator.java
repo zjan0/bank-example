@@ -17,8 +17,6 @@ public class BankAccountNumberGenerator implements AccountNumberGenerator {
         for (int i = 1; i < BASE_ACCOUNT_NUMBER_LENGTH; i++) {
             accountNumber.append(random.nextInt(10));
         }
-
-        // TODO uniq validator
         return accountNumber.toString();
     }
 

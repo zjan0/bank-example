@@ -9,7 +9,6 @@ import java.util.Map;
 public class BankAccount
 {
     private double balance;
-
     private Owner owner;
     private CardFactory cardFactory;
     private String accountNumber;

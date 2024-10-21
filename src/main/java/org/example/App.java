@@ -1,10 +1,7 @@
 package org.example;
 
 import com.google.inject.Inject;
-import org.example.accounts.BankAccount;
-import org.example.accounts.BankAccountFactory;
-import org.example.accounts.Interesting;
-import org.example.accounts.StudentBankAccount;
+import org.example.accounts.*;
 import org.example.persons.Owner;
 import org.example.persons.OwnerFactory;
 import org.example.persons.PersonJsonSerializationService;
@@ -19,10 +16,15 @@ public class App
         this.testNum();
         this.testFor();
     }
+    private ATM atm;
+    @Inject
+    private BankAccountFacade bankAccountFacade;
+    @Inject
+    private MoneyTransferService moneyTransferService;
     @Inject
     private PersonJsonSerializationService personJsonSerializationService;
-    @Inject
-    private DIContainer serviceContainer;
+    //@Inject
+    //private DIContainer serviceContainer;
     @Inject
     private OwnerFactory ownerFactory;
     @Inject
@@ -30,23 +32,31 @@ public class App
     private void testBank() throws Exception {
         //DIContainer servicesContainer = new DIContainer();
         Owner owner = this.ownerFactory.createOwner("Tomas", "Pesek", "123");
-        BankAccount accountOne = this.serviceContainer.getBankAccountFactory.createBankAccount(owner, 500,false);
-        BankAccount accountTwo = this.serviceContainer.getBankAccountFactory.createStudentBankAccount(owner, 1500, "expirace");
-        BankAccount accountThree = this.serviceContainer.getBankAccountFactory.createSavingBankAccount(owner, 1500);
-        if (accountTwo instanceof StudentBankAccount) {
+        BankAccount accountOne = this.bankAccountFacade.createBankAccount(owner, 500,false);
+        BankAccount accountTwo = this.bankAccountFactory.createStudentBankAccount(owner, 1500, "expirace");
+        BankAccount accountThree = this.bankAccountFactory.createSavingBankAccount(owner, 1500);
+        if (accountTwo instanceof StudentBankAccount)
+        {
             String expire = ((StudentBankAccount) accountTwo).getStudentStudiesConfirmationExpire();
             System.out.println(expire);
         }
-        if (accountThree instanceof Interesting) {
+        if (accountThree instanceof Interesting)
+        {
             double interest = ((Interesting) accountThree).getInterest();
             System.out.println(interest);
         }
         System.out.println("Bank account balance: " + accountOne.getBalance());
-        serviceContainer.getMoneyTransferService().addMoney(accountOne, 100);
-        serviceContainer.getMoneyTransferService().addMoney(accountOne, 10);
-        serviceContainer.getMoneyTransferService().addMoney(accountOne, 600);
-        serviceContainer.getMoneyTransferService().subMoney(accountOne, 150);
-        serviceContainer.getMoneyTransferService().transferMoneyBetweenAccounts(accountOne, accountTwo, 100);
+        moneyTransferService().addMoney(accountOne, 100);
+        moneyTransferService().addMoney(accountOne, 10);
+        moneyTransferService().addMoney(accountOne, 600);
+        moneyTransferService().subMoney(accountOne, 150);
+        moneyTransferService().transferMoneyBetweenAccounts(accountOne, accountTwo, 100);
+        ATM atm1=this.atm.atm(Map,CardNumberGenerator,int);
+    }
+
+    private MoneyTransferService moneyTransferService()
+    {
+        return moneyTransferService;
     }
 
     private void testNum() {
@@ -71,8 +81,6 @@ public class App
 
     private void testFor() {
         for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
             System.out.println("i = " + i);
         }
     }

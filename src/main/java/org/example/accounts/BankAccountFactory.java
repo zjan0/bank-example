@@ -46,7 +46,7 @@ public class BankAccountFactory
     }
 
     public BankAccount createStudentBankAccount(Owner owner, double balance, String studentStudiesConfirmationExpire) {
-        String bankAccountNumber = this.bankAccountNumberGenerator.crateStudentBankAccount(owner,balance,expire)
+        String bankAccountNumber = this.bankAccountNumberGenerator.crateStudentBankAccount(owner,balance,studentStudiesConfirmationExpire);
 
         return new StudentBankAccount(balance, owner, bankAccountNumber, studentStudiesConfirmationExpire);
     }

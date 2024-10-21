@@ -6,6 +6,7 @@ public class CardFactory
 {
     @Inject
     private CardNumberGenerator cardNumberGenerator;
+    @Inject
     private CardPinGenerator cardPinGenerator;
     private Card card;
 

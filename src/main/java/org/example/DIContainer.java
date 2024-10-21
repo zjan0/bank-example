@@ -11,17 +11,17 @@ import org.example.print.DetailPrinter;
 @Singleton
 public class DIContainer
 {
-    public BankAccountFactory getBankAccountFactory;
+    /*public BankAccountFactory getBankAccountFactory;
     public OwnerFactory ownerFactory;
     private AccountNumberGenerator bankAccountNumberGenerator = new SlovakiaBankAccountNumberGenerator();
     private TransferFeeCalculator transferFeeCalculator = new TransferFeeCalculator();
     private PersonIdValidator personIdValidator = new PersonIdValidator();
     private DetailPrinter accountDetailPrinter=new AccountDetailPrinter();
     private MoneyTransferService moneyTransferService = new MoneyTransferService(transferFeeCalculator, accountDetailPrinter);
-    /* @Inject
+     @Inject
     private OwnerFactory ownerFactory;
     @Inject
-    private BankAccountFactory bankAccountFactory;*/
+    private BankAccountFactory bankAccountFactory;
     private PersonJsonSerializationService personJsonSerializationService=new PersonJsonSerializationService();
     public AccountNumberGenerator getBankAccountNumberGenerator() {
         return bankAccountNumberGenerator;
@@ -52,5 +52,5 @@ public class DIContainer
     public PersonJsonSerializationService getPersonJsonSerializationService()
     {
         return personJsonSerializationService;
-    }
+    }*/
 }
