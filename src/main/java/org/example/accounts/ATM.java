@@ -6,19 +6,18 @@ import java.util.Map;
 
 public class ATM
 {
-    public int atm(Map cards, CardNumberGenerator cardNumberGenerator, int amount)
+    public void MoneyfromAtmatm(Map cards, int cardNumberGenerator, int amount)
     {
         for(int a=0;a<cards.size();a++)
         {
             if(cards.equals(cardNumberGenerator))
             {
-                return amount;
+                System.out.println(amount);
             }
             else
             {
                 System.out.println("no card found");
             }
         }
-        return 0;
     }
 }

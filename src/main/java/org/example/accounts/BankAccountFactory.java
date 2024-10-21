@@ -28,7 +28,6 @@ public class BankAccountFactory
         return new BankAccount(balance, owner, bankAccountNumber);
 
     }
-
     public BankAccount createBankAccount(Owner owner, double balance, String bankAccountNumber) {
         return new BankAccount(balance, owner, bankAccountNumber);
     }

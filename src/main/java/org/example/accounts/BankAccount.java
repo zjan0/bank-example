@@ -8,6 +8,7 @@ import java.util.Map;
 
 public class BankAccount
 {
+    private ATM atm;
     private double balance;
     private Owner owner;
     private CardFactory cardFactory;
@@ -15,7 +16,7 @@ public class BankAccount
     private Map<String, Card> cardsInMap;
     public Card getCard(Card cardNumber)
 {
-    cardNumber=cardFactory.createcard(null,null);
+    cardNumber=cardFactory.createcard();
     return cardNumber;
 }
 
@@ -28,7 +29,10 @@ public class BankAccount
     {
         cardsInMap.put(toString(),CardNumber);
     }
-
+    public void MoneyfromAtm(int cardnumber,int amount)
+    {
+        this.atm.MoneyfromAtmatm(cardsInMap,cardnumber,amount);
+    }
     public double getBalance() {
         return balance;
     }

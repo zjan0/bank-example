@@ -51,7 +51,7 @@ public class App
         moneyTransferService().addMoney(accountOne, 600);
         moneyTransferService().subMoney(accountOne, 150);
         moneyTransferService().transferMoneyBetweenAccounts(accountOne, accountTwo, 100);
-        ATM atm1=this.atm.atm(Map,CardNumberGenerator,int);
+        this.bankAccountFacade.MoneyfromAtmfacade(100,5000);
     }
 
     private MoneyTransferService moneyTransferService()

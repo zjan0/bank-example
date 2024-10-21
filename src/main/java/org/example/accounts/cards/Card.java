@@ -4,9 +4,11 @@ public class Card
 {
     private String number;
     private String pin;
-    public Card(String number, String pin)
+    private int amount;
+    public Card(String number, String pin,int amount)
     {
         this.number=number;
         this.pin=pin;
+        this.amount=amount;
     }
 }
