@@ -23,14 +23,11 @@ public class App
     private MoneyTransferService moneyTransferService;
     @Inject
     private PersonJsonSerializationService personJsonSerializationService;
-    //@Inject
-    //private DIContainer serviceContainer;
     @Inject
     private OwnerFactory ownerFactory;
     @Inject
     private BankAccountFactory bankAccountFactory;
     private void testBank() throws Exception {
-        //DIContainer servicesContainer = new DIContainer();
         Owner owner = this.ownerFactory.createOwner("Tomas", "Pesek", "123");
         BankAccount accountOne = this.bankAccountFacade.createBankAccount(owner, 500,false);
         BankAccount accountTwo = this.bankAccountFactory.createStudentBankAccount(owner, 1500, "expirace");
