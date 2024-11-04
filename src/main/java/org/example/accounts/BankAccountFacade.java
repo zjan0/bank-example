@@ -2,6 +2,7 @@ package org.example.accounts;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
+import org.example.accounts.cards.Card;
 import org.example.accounts.cards.CardFactory;
 import org.example.persons.Owner;
 
@@ -11,36 +12,38 @@ import java.util.List;
 @Singleton
 public class BankAccountFacade
 {
-    private BankAccount bankAccount;
-    private List<BankAccount> bankAccounts=new LinkedList<>();
     @Inject
     private BankAccountFactory bankAccountFactory;
+    @Inject
+    private CardFactory CardFactory;
     @Inject
     private GlobalCardStorage globalCardStorage;
     @Inject
     private GlobalBankAccountStorage globalBankAccountStorage;
-    public BankAccount createBankAccount(Owner owner,double balance,boolean withCard)
-    {
-        BankAccount account=this.bankAccountFactory.createBankAccount(owner,balance);
-        this.bankAccounts.add(account);
-        /*if(withCard)
-        {
-            CardFactory card=this.CardFactory.createCard(account);
-            account.BankCard(card);
-        }*/
+    public BankAccount createBankAccount(Owner owner, double balance, boolean withCard) {
+        BankAccount account = this.bankAccountFactory.createBankAccount(owner, balance);
+        this.globalBankAccountStorage.add(account);
+
+        if (withCard) {
+            Card card = this.CardFactory.createCard(account);
+            account.addCard(card);
+            this.globalCardStorage.addBankCard(card.getNumber(), account);
+        }
 
         return account;
     }
-    public BankAccount crateStudentBankAccount(Owner owner,double balance,String expire)
-    {
-        BankAccount account=this.bankAccountFactory.createStudentBankAccount(owner,balance,expire);
-        this.bankAccounts.add(account);
+
+    public BankAccount createStudentBankAccount(Owner owner, double balance, String expire) {
+        BankAccount account = this.bankAccountFactory.createStudentBankAccount(owner, balance, expire);
+        this.globalBankAccountStorage.add(account);
+
         return account;
     }
 
-    public void MoneyfromAtmfacade(int cardnumber,int moneyamount)
-    {
-        this.bankAccount.MoneyfromAtm(cardnumber,moneyamount);
+    public BankAccount createSavingBankAccount(Owner owner, double balance) {
+        BankAccount account = this.bankAccountFactory.createSavingBankAccount(owner, balance);
+        this.globalBankAccountStorage.add(account);
 
+        return account;
     }
 }

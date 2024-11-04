@@ -5,14 +5,15 @@ import com.google.inject.Singleton;
 import java.util.Random;
 
 @Singleton
-public class CardPinGenerator
-{
-    private int cardNumber;
+public class CardPinGenerator {
+    public String generate() {
+        Random random = new Random();
+        StringBuilder cardNumber = new StringBuilder();
 
-    public String generate()
-    {
-        Random random=new Random();
-        cardNumber=random.nextInt(10);
-        return String.valueOf(cardNumber);
+        for (int i = 0; i < 4; i++) {
+            cardNumber.append(random.nextInt(10));
+        }
+
+        return cardNumber.toString();
     }
 }

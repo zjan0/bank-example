@@ -1,10 +1,12 @@
 package org.example;
-
 import com.google.inject.Inject;
 import org.example.accounts.*;
+import org.example.accounts.cards.Card;
 import org.example.persons.Owner;
 import org.example.persons.OwnerFactory;
 import org.example.persons.PersonJsonSerializationService;
+
+import java.util.Map;
 
 public class App
 {
@@ -16,6 +18,7 @@ public class App
         this.testNum();
         this.testFor();
     }
+    @Inject
     private ATM atm;
     @Inject
     private BankAccountFacade bankAccountFacade;
@@ -48,7 +51,12 @@ public class App
         moneyTransferService().addMoney(accountOne, 600);
         moneyTransferService().subMoney(accountOne, 150);
         moneyTransferService().transferMoneyBetweenAccounts(accountOne, accountTwo, 100);
-        this.bankAccountFacade.MoneyfromAtmfacade(100,5000);
+        Card Card = null;
+        for (Map.Entry<String, Card> entrySet : accountOne.getCards().entrySet()) {
+            Card = entrySet.getValue();
+        }
+
+        this.atm.withdrawMoney(Card.getNumber(), Card.getPin(), 500);
     }
 
     private MoneyTransferService moneyTransferService()

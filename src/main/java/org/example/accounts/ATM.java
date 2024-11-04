@@ -1,23 +1,26 @@
 package org.example.accounts;
 
-import org.example.accounts.cards.CardNumberGenerator;
+import com.google.inject.Inject;
+import com.google.inject.Singleton;
+import org.example.accounts.cards.Card;
+import org.example.accounts.exceptions.InvalidPinException;
 
 import java.util.Map;
-
+@Singleton
 public class ATM
 {
-    public void MoneyfromAtmatm(Map cards, int cardNumberGenerator, int amount)
-    {
-        for(int a=0;a<cards.size();a++)
-        {
-            if(cards.equals(cardNumberGenerator))
-            {
-                System.out.println(amount);
-            }
-            else
-            {
-                System.out.println("no card found");
-            }
+    @Inject
+    private GlobalCardStorage globalCardStorage;
+    @Inject
+    private MoneyTransferService moneyTransferService;
+    public void withdrawMoney(String cardNumber, String pin, double amount) {
+        BankAccount bankAccount = globalCardStorage.getBankAccount(cardNumber);
+        Card card = bankAccount.getCard(cardNumber);
+
+        if (!card.getPin().equals(pin)) {
+            throw new InvalidPinException();
         }
+
+        this.moneyTransferService.subMoney(bankAccount, amount);
     }
 }

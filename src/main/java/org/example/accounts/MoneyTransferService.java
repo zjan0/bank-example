@@ -8,15 +8,10 @@ import org.example.print.DetailPrinter;
 public class MoneyTransferService {
 
     @Inject
-    private final TransferFeeCalculator transferFeeCalculator;
+    private  TransferFeeCalculator transferFeeCalculator;
     @Inject
-    private final DetailPrinter accountDetailPrinter;
+    private  DetailPrinter accountDetailPrinter;
 
-    public MoneyTransferService(TransferFeeCalculator transferFeeCalculator, DetailPrinter accountDetailPrinter)
-    {
-        this.transferFeeCalculator = transferFeeCalculator;
-        this.accountDetailPrinter = accountDetailPrinter;
-    }
 
     public void addMoney(BankAccount account, double amount)
     {

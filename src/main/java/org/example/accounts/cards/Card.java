@@ -1,14 +1,28 @@
 package org.example.accounts.cards;
 
+import org.example.accounts.BankAccount;
+
 public class Card
 {
     private String number;
     private String pin;
-    private int amount;
-    public Card(String number, String pin,int amount)
-    {
-        this.number=number;
-        this.pin=pin;
-        this.amount=amount;
+    private BankAccount bankAccount;
+
+    public Card(String number, String pin, BankAccount bankAccount) {
+        this.number = number;
+        this.pin = pin;
+        this.bankAccount = bankAccount;
+    }
+
+    public String getNumber() {
+        return number;
+    }
+
+    public String getPin() {
+        return pin;
+    }
+
+    public BankAccount getBankAccount() {
+        return bankAccount;
     }
 }

@@ -1,23 +1,24 @@
 package org.example.accounts.cards;
 
 import com.google.inject.Inject;
-
+import com.google.inject.Singleton;
+import org.example.accounts.BankAccount;
+@Singleton
 public class CardFactory
 {
-    private int amount;
-    private String number;
-    private String pin;
     @Inject
     private CardNumberGenerator cardNumberGenerator;
     @Inject
     private CardPinGenerator cardPinGenerator;
-    private Card card;
 
-    public Card createcard()
+    public Card createCard(BankAccount bankAccount)
     {
-        number=cardNumberGenerator.generate();
-        pin=cardPinGenerator.generate();
-        return new Card(number,pin,amount);
-        //return new Card(this.cardNumberGenerator,this.cardPinGenerator);
+        Card card = new Card(
+                this.cardNumberGenerator.generate(),
+                this.cardPinGenerator.generate(),
+                bankAccount
+        );
+
+        return card;
     }
 }
