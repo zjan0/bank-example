@@ -10,7 +10,6 @@ public class InterestCalculator
         int interestlength=0;
         int interestfrequancy=0;
         int finalinterestvalue=startingvalue+interestvaluepercentage+interestlength+interestfrequancy;
-        System.out.println(finalinterestvalue);
         bankAccount.setInterest(finalinterestvalue);
     }
 }
