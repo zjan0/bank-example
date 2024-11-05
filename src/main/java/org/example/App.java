@@ -1,6 +1,7 @@
 package org.example;
 import com.google.inject.Inject;
 import org.example.accounts.*;
+import org.example.accounts.bankinterest.InterestCalculator;
 import org.example.accounts.cards.Card;
 import org.example.persons.Owner;
 import org.example.persons.OwnerFactory;
@@ -18,6 +19,8 @@ public class App
         this.testNum();
         this.testFor();
     }
+    @Inject
+    private InterestCalculator interestCalculator;
     @Inject
     private ATM atm;
     @Inject
@@ -55,8 +58,8 @@ public class App
         for (Map.Entry<String, Card> entrySet : accountOne.getCards().entrySet()) {
             Card = entrySet.getValue();
         }
-
-        this.atm.withdrawMoney(Card.getNumber(), Card.getPin(), 500);
+        //this.atm.withdrawMoney(Card.getNumber(), Card.getPin(), 500);
+        interestCalculator.interestCalculator(accountOne,100);
     }
 
     private MoneyTransferService moneyTransferService()

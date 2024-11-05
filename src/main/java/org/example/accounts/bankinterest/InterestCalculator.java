@@ -4,10 +4,13 @@ import org.example.accounts.BankAccount;
 
 public class InterestCalculator
 {
-    public void interestCalculator(BankAccount bankAccount,int startingvalue,int interestvaluepercentage,int interestlength,int interestfrequancy)
+    public void interestCalculator(BankAccount bankAccount,int startingvalue)
     {
-       /* int finalinterestvalue=startingvalue+interestvaluepercentage+interestlength+interestfrequancy;
+        int interestvaluepercentage=10;
+        int interestlength=0;
+        int interestfrequancy=0;
+        int finalinterestvalue=startingvalue+interestvaluepercentage+interestlength+interestfrequancy;
         System.out.println(finalinterestvalue);
-        return finalinterestvalue;*/
+        bankAccount.setInterest(finalinterestvalue);
     }
 }

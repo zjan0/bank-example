@@ -38,6 +38,10 @@ public class BankAccount {
     public void setBalance(double balance) {
         this.balance = balance;
     }
+    public void setInterest(double interest)
+    {
+        this.balance=interest+balance;
+    }
 
     public Card getCard(String cardNumber) {
         return cards.get(cardNumber);
