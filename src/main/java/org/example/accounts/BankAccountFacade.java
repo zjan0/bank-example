@@ -46,4 +46,9 @@ public class BankAccountFacade
 
         return account;
     }
+    public InvestBankAccount createInvestBankAccount()
+    {
+        InvestBankAccount account=this.bankAccountFactory.createInvestBankAccount();
+        return account;
+    }
 }

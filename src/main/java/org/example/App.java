@@ -20,6 +20,8 @@ public class App
         this.testFor();
     }
     @Inject
+    private InvestBankAccount investBankAccount;
+    @Inject
     private InterestCalculator interestCalculator;
     @Inject
     private ATM atm;
@@ -59,7 +61,6 @@ public class App
             Card = entrySet.getValue();
         }
         //this.atm.withdrawMoney(Card.getNumber(), Card.getPin(), 500);
-        interestCalculator.interestCalculator(accountOne,100);
     }
 
     private MoneyTransferService moneyTransferService()

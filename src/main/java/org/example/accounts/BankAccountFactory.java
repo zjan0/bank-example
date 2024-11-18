@@ -36,4 +36,8 @@ public class BankAccountFactory
 
         return new StudentBankAccount(balance, owner, bankAccountNumber, studentStudiesConfirmationExpire);
     }
+    public InvestBankAccount createInvestBankAccount()
+    {
+        return new InvestBankAccount();
+    }
 }
